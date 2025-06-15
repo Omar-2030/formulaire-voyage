@@ -44,11 +44,15 @@
 
   <h2>Ton récit de voyage</h2>
   <form id="formulaire">
+    <!-- Champ caché pour recevoir l'identifiant utilisateur -->
+    <input type="hidden" id="userid" name="userid" value="">
+    
     <label for="reponse">
       Tu es parti(e) en voyage pendant les vacances scolaires de l'année dernière, et tu as rencontré un(e) collégien(ne) comme toi, qui deviendra ton ami(e) plus tard.  
       <br><br>
       Raconte comment tu as passé ce voyage et les moments partagés avec ce(tte) nouvel(le) ami(e) :
     </label><br><br>
+    
     <textarea id="reponse" name="reponse" required></textarea><br>
     <input type="submit" value="Envoyer">
   </form>
@@ -56,18 +60,28 @@
   <div id="confirmation">Merci, ta réponse a bien été envoyée !</div>
 
   <script>
+    // Fonction pour récupérer un paramètre GET dans l'URL
+    function getParam(param) {
+      var urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Affecte la valeur du paramètre 'userid' dans le champ caché
+    document.getElementById("userid").value = getParam("userid");
+
     document.getElementById("formulaire").addEventListener("submit", function(e) {
       e.preventDefault();
 
       const reponse = document.getElementById("reponse").value;
+      const userid = document.getElementById("userid").value;
 
-      fetch("https://script.google.com/macros/s/AKfycby90uYct5_i1MwvC3d9WdTX6liBdPLiorOhEtNE2-SvNwRHLZR8nS-I18hP61VDxBJ_/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxQ_D9Ug5j8oyoFxEjWeHtcbd6raXmNLPt9jetj9dXTbKrI-zskULEhBXkjp-2h_Ls/exec", {
         method: "POST",
         mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: "reponse=" + encodeURIComponent(reponse)
+        body: "reponse=" + encodeURIComponent(reponse) + "&userid=" + encodeURIComponent(userid)
       });
 
       document.getElementById("formulaire").style.display = "none";
