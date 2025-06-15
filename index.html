@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -58,9 +58,20 @@
   <script>
     document.getElementById("formulaire").addEventListener("submit", function(e) {
       e.preventDefault();
+
+      const reponse = document.getElementById("reponse").value;
+
+      fetch("https://script.google.com/macros/s/AKfycby90uYct5_i1MwvC3d9WdTX6liBdPLiorOhEtNE2-SvNwRHLZR8nS-I18hP61VDxBJ_/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "reponse=" + encodeURIComponent(reponse)
+      });
+
       document.getElementById("formulaire").style.display = "none";
       document.getElementById("confirmation").style.display = "block";
-      // Ici, tu pourrais envoyer la réponse vers une base de données si tu veux
     });
   </script>
 
