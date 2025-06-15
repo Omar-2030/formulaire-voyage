@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ton Voyage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h2 {
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 250px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    input[type="submit"] {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #confirmation {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ton récit de voyage</h2>
+  <form id="formulaire">
+    <label for="reponse">
+      Tu es parti(e) en voyage pendant les vacances scolaires de l'année dernière, et tu as rencontré un(e) collégien(ne) comme toi, qui deviendra ton ami(e) plus tard.  
+      <br><br>
+      Raconte comment tu as passé ce voyage et les moments partagés avec ce(tte) nouvel(le) ami(e) :
+    </label><br><br>
+    <textarea id="reponse" name="reponse" required></textarea><br>
+    <input type="submit" value="Envoyer">
+  </form>
+
+  <div id="confirmation">Merci, ta réponse a bien été envoyée !</div>
+
+  <script>
+    document.getElementById("formulaire").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("formulaire").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+      // Ici, tu pourrais envoyer la réponse vers une base de données si tu veux
+    });
+  </script>
+
+</body>
+</html>
